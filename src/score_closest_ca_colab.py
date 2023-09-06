@@ -109,7 +109,7 @@ def align_coords_transform(ref_ca, current_ca, current_coords):
     return tr_current_coords, tr_current_ca
 
 
-def write_pdb(pdb_info, new_coords, name):
+def write_pdb(pdb_info, new_coords, name, outdir):
     """Write PDB
     """
 

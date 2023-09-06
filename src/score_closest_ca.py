@@ -115,7 +115,7 @@ def align_coords_transform(ref_ca, current_ca, current_coords):
     return tr_current_coords, tr_current_ca
 
 
-def write_pdb(pdb_info, new_coords, name):
+def write_pdb(pdb_info, new_coords, name, outdir):
     """Write PDB
     """
 
@@ -169,7 +169,7 @@ for i in range(1,len(order)):
     #Align i+1 to i
     tr_current_coords, tr_current_ca = align_coords_transform(tr_current_ca, pdb_info['ca_coords'][order[i]], pdb_info['all_coords'][order[i]])
     #Write new pdb file
-    write_pdb(pdb_info['file_contents'][order[i]], tr_current_coords, pdb_info['name'][order[i]].split('/')[-1])
+    write_pdb(pdb_info['file_contents'][order[i]], tr_current_coords, pdb_info['name'][order[i]].split('/')[-1], outdir)
     ordered_names.append(pdb_info['name'][order[i]].split('/')[-1])
 
 #Save order
