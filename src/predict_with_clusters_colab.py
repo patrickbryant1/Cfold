@@ -24,9 +24,6 @@ from collections import Counter
 from scipy.special import softmax
 import pdb
 
-#Data loading
-from tinyloader import DataLoader
-
 #AlphaFold imports
 from alphafold.common import protein
 from alphafold.common import residue_constants
