@@ -115,7 +115,7 @@ def predict(feature_dir,
                 continue
 
             #Load input feats
-            batch = load_input_feats(predict_id, feature_dir, config, num_clusts)
+            batch = load_input_feats(predict_id, feature_dir, config.CONFIG, num_clusts)
             for key in batch:
                 batch[key] = np.reshape(batch[key], (1, *batch[key].shape))
 
