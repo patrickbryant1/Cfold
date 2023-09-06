@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 from collections import defaultdict
 from Bio.SVDSuperimposer import SVDSuperimposer
-import matplotlib.cm as cm
+import shutil
 import glob
 import argparse
 
@@ -110,13 +110,31 @@ def align_coords_transform(ref_ca, current_ca, current_coords):
 
     #Rotate coords from new chain to its new relative position/orientation
     tr_current_coords = np.dot(current_coords, rot) + tran
+    tr_current_ca = np.dot(current_ca, rot) + tran
 
-    return tr_current_coords
+    return tr_current_coords, tr_current_ca
 
 
-def write_pdb(pdb_file_info, transformed_coords, outname):
-    """Write the new info to out
+def write_pdb(pdb_info, new_coords, name):
+    """Write PDB
     """
+
+
+    #Open file
+    outname = outdir+name
+    atm_no=0
+    with open(outname, 'w') as file:
+        for i in range(len(pdb_info)):
+            line = pdb_info[i]
+            #Update line with new coords
+            x,y,z = new_coords[i]
+            x,y,z = str(np.round(x,3)), str(np.round(y,3)), str(np.round(z,3))
+            x =' '*(8-len(x))+x
+            y =' '*(8-len(y))+y
+            z =' '*(8-len(z))+z
+            #Write
+            file.write(line[:30]+x+y+z+line[54:]+'\n')
+
 
 
 
@@ -131,7 +149,7 @@ outdir = args.outdir[0]
 #Read in all coords
 pdb_info = {'name':[], 'file_contents':[], 'all_coords':[], 'ca_coords':[]}
 print('Reading preds...')
-for name in glob.glob(pdbdir+'*.pdb')[:10]:
+for name in glob.glob(pdbdir+'*.pdb'):
     current_info, current_coords, current_ca_coords = read_pdb(name)
     pdb_info['name'].append(name)
     pdb_info['file_contents'].append(current_info)
@@ -141,10 +159,20 @@ for name in glob.glob(pdbdir+'*.pdb')[:10]:
 #Score all
 print('Scoring...')
 score_matrix, order = score_ca_diff(pdb_info['ca_coords'])
-
 #Align according to order and write to out
-for i in range(len(order)-1):
+#Copy the first one to out
+print('Writing aligned structures...')
+shutil.copy(pdb_info['name'][order[0]], outdir+pdb_info['name'][order[0]].split('/')[-1])
+tr_current_ca = pdb_info['ca_coords'][order[0]]
+ordered_names = [pdb_info['name'][order[0]].split('/')[-1]]
+for i in range(1,len(order)):
     #Align i+1 to i
-    tr_current_coords = align_coords_transform(pdb_info['ca_coords'][i], pdb_info['ca_coords'][i+1], pdb_info['all_coords'][i+1])
+    tr_current_coords, tr_current_ca = align_coords_transform(tr_current_ca, pdb_info['ca_coords'][order[i]], pdb_info['all_coords'][order[i]])
     #Write new pdb file
-    pdb.set_trace()
+    write_pdb(pdb_info['file_contents'][order[i]], tr_current_coords, pdb_info['name'][order[i]].split('/')[-1])
+    ordered_names.append(pdb_info['name'][order[i]].split('/')[-1])
+
+#Save order
+order_df = pd.DataFrame()
+order_df['name'] = ordered_names
+order_df.to_csv(outdir+'aligned_order.csv', index=None)
