@@ -77,7 +77,7 @@ def load_input_feats(id, feature_dir, config, num_clusters):
 ##########MODEL#########
 
 def predict(feature_dir,
-          predict_ids,
+          predict_id,
           num_recycles,
           num_samples_per_cluster,
           ckpt_params=None,
@@ -107,27 +107,27 @@ def predict(feature_dir,
     #Get a random key
     rng = jax.random.PRNGKey(42)
 
-    for id in predict_ids:
-        for num_clusts in [16, 32, 64, 128, 256, 512, 1024, 5120]:
-            for i in range(num_samples_per_cluster):
-                if os.path.exists(outdir+'/'+id+'_'+str(num_clusts)+'_'+str(i)+'_pred.pdb'):
-                    print('Prediction',num_clusts, i+1, 'exists...')
-                    continue
 
-                #Load input feats
-                batch = load_input_feats(id, feature_dir, config, num_clusts)
-                for key in batch:
-                    batch[key] = np.reshape(batch[key], (1, *batch[key].shape))
+    for num_clusts in [16, 32, 64, 128, 256, 512, 1024, 5120]:
+        for i in range(num_samples_per_cluster):
+            if os.path.exists(outdir+'/'+predict_id+'_'+str(num_clusts)+'_'+str(i)+'_pred.pdb'):
+                print('Prediction',num_clusts, i+1, 'exists...')
+                continue
 
-                batch['num_iter_recycling'] = [num_recycles]
-                ret = apply_fwd(ckpt_params, rng, batch)
-                #Save structure
-                save_feats = {'aatype':batch['aatype'], 'residue_index':batch['residue_index']}
-                result = {'predicted_lddt':ret['predicted_lddt'],
-                    'structure_module':{'final_atom_positions':ret['structure_module']['final_atom_positions'],
-                    'final_atom_mask': ret['structure_module']['final_atom_mask']
-                    }}
-                save_structure(save_feats, result, id+'_'+str(num_clusts)+'_'+str(i), outdir)
+            #Load input feats
+            batch = load_input_feats(predict_id, feature_dir, config, num_clusts)
+            for key in batch:
+                batch[key] = np.reshape(batch[key], (1, *batch[key].shape))
+
+            batch['num_iter_recycling'] = [num_recycles]
+            ret = apply_fwd(ckpt_params, rng, batch)
+            #Save structure
+            save_feats = {'aatype':batch['aatype'], 'residue_index':batch['residue_index']}
+            result = {'predicted_lddt':ret['predicted_lddt'],
+                'structure_module':{'final_atom_positions':ret['structure_module']['final_atom_positions'],
+                'final_atom_mask': ret['structure_module']['final_atom_mask']
+                }}
+            save_structure(save_feats, result, predict_id+'_'+str(num_clusts)+'_'+str(i), outdir)
 
 
 
