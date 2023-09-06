@@ -76,8 +76,7 @@ def load_input_feats(id, feature_dir, config, num_clusters):
 
 ##########MODEL#########
 
-def predict(config,
-          feature_dir,
+def predict(feature_dir,
           predict_ids,
           num_recycles,
           num_samples_per_cluster,
@@ -86,13 +85,14 @@ def predict(config,
     """Predict a structure
     """
 
+
     #Does the config have to be updated here?
     #No - the clusters can be changed.
     #Define the forward function
     def _forward_fn(batch):
         '''Define the forward function - has to be a function for JAX
         '''
-        model = modules.AlphaFold(config.model)
+        model = modules.AlphaFold(config.CONFIG.model)
 
         return model(batch,
                     is_training=False,
@@ -160,8 +160,7 @@ def save_structure(save_feats, result, id, outdir):
 ##################MAIN#######################
 
 # #Predict
-# predict(config.CONFIG,
-#             feature_dir,
+# predict(feature_dir,
 #             [predict_id],
 #             num_recycles,
 #             num_samples_per_cluster,
