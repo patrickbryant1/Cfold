@@ -107,10 +107,9 @@ def predict(feature_dir,
     #Get a random key
     rng = jax.random.PRNGKey(42)
 
-    pdb.set_trace()
     for num_clusts in [16, 32, 64, 128, 256, 512, 1024, 5120]:
         for i in range(num_samples_per_cluster):
-            print(num_clusts, i)
+            print('Number of clusters',num_clusts, 'Sample', i+1)
             if os.path.exists(outdir+'/'+predict_id+'_'+str(num_clusts)+'_'+str(i)+'_pred.pdb'):
                 print('Prediction',num_clusts, i+1, 'exists...')
                 continue
