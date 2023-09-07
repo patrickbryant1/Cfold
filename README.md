@@ -1,7 +1,10 @@
 # Cfold
 
+<img src="./Logo.svg" width="50%" height="50%"/>
 
 # Colab (run in the web)
+
+[Colab Notebook](https://colab.research.google.com/github/patrickbryant1/Cfold/blob/master/Cfold.ipynb)
 
 # Local installation
 
