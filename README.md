@@ -1,6 +1,6 @@
 # Cfold
 
-<img src="./Logo.svg" width="50%" height="50%"/>
+<img src="./Logo.svg"/>
 
 # Colab (run in the web)
 
