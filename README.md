@@ -2,6 +2,17 @@
 
 <img src="./Logo.svg"/>
 
+**Structure prediction of alternative protein conformations**
+
+\
+Cfold is a structure prediction network similar to AlphaFold2 that is trained on a conformational split of the PDB.
+This has the effect of learning to relate one conformation with one MSA representation. \
+\
+AlphaFold2 is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) and so is Cfold, which is a derivative thereof. The Cfold parameters are made available under the terms of the [CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/legalcode).
+\
+\
+**You may not use these files except in compliance with the licenses.**
+
 # Colab (run in the web)
 
 [Colab Notebook](https://colab.research.google.com/github/patrickbryant1/Cfold/blob/master/Cfold.ipynb)
