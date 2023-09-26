@@ -1,8 +1,10 @@
 # Cfold
 
+**Structure prediction of alternative protein conformations**
+
 <img src="./Logo.svg"/>
 
-**Structure prediction of alternative protein conformations**
+
 
 \
 Cfold is a structure prediction network similar to AlphaFold2 that is trained on a conformational split of the PDB. Cfold is designed for predicting alternative conformations of protein structures. Read more about it [here](https://www.biorxiv.org/content/10.1101/2023.09.25.559256v1)
