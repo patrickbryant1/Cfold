@@ -7,7 +7,7 @@
 
 
 \
-Cfold is a structure prediction network similar to AlphaFold2 that is trained on a conformational split of the PDB. Cfold is designed for predicting alternative conformations of protein structures. Read more about it [here](https://www.biorxiv.org/content/10.1101/2023.09.25.559256v1)
+Cfold is a structure prediction network similar to AlphaFold2 that is trained on a conformational split of the PDB. Cfold is designed for predicting alternative conformations of protein structures. [Read more about it in the paper here](https://www.biorxiv.org/content/10.1101/2023.09.25.559256v1)
 \
 \
 AlphaFold2 is available under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0) and so is Cfold, which is a derivative thereof. The Cfold parameters are made available under the terms of the [CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/legalcode).
