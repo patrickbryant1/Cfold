@@ -95,7 +95,7 @@ OUTDIR=./data/test/
 NUM_REC=3 #Increase for hard targets
 NUM_SAMPLES=13 #Increase for hard targets
 
-python3 ./src/net/predict_with_clusters.py --feature_dir $FEATURE_DIR \
+python3 ./src/predict_with_clusters.py --feature_dir $FEATURE_DIR \
 --predict_id $ID \
 --ckpt_params $PARAMS \
 --num_recycles $NUM_REC \

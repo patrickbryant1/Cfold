@@ -172,7 +172,7 @@ def save_structure(save_feats, result, id, outdir):
 args = parser.parse_args()
 feature_dir = args.feature_dir[0]
 predict_id = args.predict_id[0]
-#ckpt_params = np.load(args.ckpt_params[0] , allow_pickle=True)
+ckpt_params = np.load(args.ckpt_params[0] , allow_pickle=True)
 num_recycles = args.num_recycles[0]
 num_samples_per_cluster = args.num_samples_per_cluster[0]
 outdir = args.outdir[0]
@@ -182,5 +182,5 @@ predict(config.CONFIG,
             [predict_id],
             num_recycles,
             num_samples_per_cluster,
-            ckpt_params=None,
+            ckpt_params=ckpt_params,
             outdir=outdir)
