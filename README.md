@@ -21,6 +21,12 @@ AlphaFold2 is available under the [Apache License, Version 2.0](http://www.apach
 
 # Local installation
 
+The entire installation takes <1 hour on a standard computer. \
+The runtime will depend on the GPU you have available, the size of the protein
+you are predicting and the number of samples taken. On an NVIDIA A100 GPU, the
+prediction time is a few minutes per sample for a protein of a few hundred amino acids.
+
+
 ## Python packages
 * For the python environment, we recommend to install it with pip as described below. \
 You can do this in your virtual environment of choice.
