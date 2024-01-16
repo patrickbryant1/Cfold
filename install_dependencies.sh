@@ -1,5 +1,11 @@
 
+#Python packages
+conda env create -f environment.yml
 
+wait
+conda activate cfold
+pip install --upgrade "jax[cuda12_local]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+conda deactivate
 
 ## Get network parameters for Cfold
 wget https://zenodo.org/records/10517910/files/params10000.npy

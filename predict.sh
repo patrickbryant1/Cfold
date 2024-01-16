@@ -8,6 +8,7 @@ OUTDIR=./data/test/
 
 
 ## MSA feats
+conda activate cfold
 MSA_DIR=./data/test/
 OUTDIR=./data/test/
 
