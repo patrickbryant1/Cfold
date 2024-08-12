@@ -39,3 +39,9 @@ bash install_dependencies.sh
 ```
 bash predict.sh
 ```
+
+# Data availability
+https://zenodo.org/records/10837082
+
+# Citation
+Bryant P. Structure prediction of alternative protein conformations. bioRxiv. 2023. p. 2023.09.25.559256. doi.org/10.1101/2023.09.25.559256 
