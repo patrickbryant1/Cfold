@@ -33,6 +33,7 @@ First install miniconda, see: https://docs.conda.io/projects/miniconda/en/latest
 ```
 bash install_dependencies.sh
 ```
+If the conda doesn't work for you - see "pip_pkgs.txt"
 
 # Run the test case
 ## (a few minutes)
@@ -44,4 +45,4 @@ bash predict.sh
 https://zenodo.org/records/10837082
 
 # Citation
-Bryant P. Structure prediction of alternative protein conformations. bioRxiv. 2023. p. 2023.09.25.559256. doi.org/10.1101/2023.09.25.559256 
+Bryant P. Structure prediction of alternative protein conformations. bioRxiv. 2023. p. 2023.09.25.559256. doi.org/10.1101/2023.09.25.559256
